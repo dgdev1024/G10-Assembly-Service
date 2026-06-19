@@ -1,0 +1,62 @@
+{
+  "name": "g10-assembly-service",
+  "displayName": "G10 Virtual CPU Assembly Language",
+  "version": "0.0.2",
+  "description": "Provides a language service and syntax highlighting for the G10 Virtual CPU Assembly Language.",
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "Programming Languages",
+    "Assembly Languages",
+    "G10",
+    "G10 CPU",
+    "G10 Virtual CPU",
+    "G10 Assembly"
+  ],
+  "homepage": "https://github.com/dgdev1024/G10-Assembly-Service#readme",
+  "bugs": {
+    "url": "https://github.com/dgdev1024/G10-Assembly-Service/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dgdev1024/G10-Assembly-Service.git"
+  },
+  "license": "MIT",
+  "author": "Dennis W. Griffin",
+  "type": "commonjs",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "g10-assembly",
+        "aliases": [
+          "G10 Assembly",
+          "G10 ASM",
+          "G10"
+        ],
+        "extensions": [
+          ".g10asm",
+          ".g10s",
+          ".asm",
+          ".s",
+          ".inc"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "g10-assembly",
+        "scopeName": "source.g10-assembly",
+        "path": "./syntaxes/g10-assembly.tmLanguage.json"
+      }
+    ]
+  }
+}
