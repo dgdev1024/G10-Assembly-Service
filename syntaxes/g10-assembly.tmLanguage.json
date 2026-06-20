@@ -1,0 +1,274 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "G10 Assembly",
+    "scopeName": "source.g10-assembly",
+    "patterns": [
+        { "include": "#comments" },
+        { "include": "#operators" },
+        { "include": "#numerics" },
+        { "include": "#characters" },
+        { "include": "#strings" },
+        { "include": "#macro_parameters" },
+        { "include": "#labels" },
+        { "include": "#registers" },
+        { "include": "#conditions" },
+        { "include": "#sections" },
+        { "include": "#instructions" },
+        { "include": "#assembler_directives" },
+        { "include": "#preprocessor_directives" },
+        { "include": "#preprocessor_functions" },
+        { "include": "#builtins" }
+    ], 
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "match": ";.*$",
+                    "name": "comment.line.g10-assembly"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "match": "(\\+|\\-|\\*|\\*\\*|/|%)",
+                    "name": "keyword.operator.arithmetic.g10-assembly"
+                },
+                {
+                    "match": "(<<|>>|&|\\^|\\||\\~)",
+                    "name": "keyword.operator.bitwise.g10-assembly"
+                },
+                {
+                    "match": "(\\+=|\\-=|\\*=|\\*\\*=|\\/=|%=|<<=|>>=|&=|\\^=|\\|=)",
+                    "name": "keyword.operator.assignment.g10-assembly"
+                },
+                {
+                    "match": "(\\&\\&|\\|\\||\\!)",
+                    "name": "keyword.operator.logical.g10-assembly"
+                },
+                {
+                    "match": "(==|!=|<|>|<=|>=)",
+                    "name": "keyword.operator.comparison.g10-assembly"
+                }
+            ]
+        },
+        "numerics": {
+            "patterns": [
+                {
+                    "match": "\\b[0-9]+\\b",
+                    "name": "constant.numeric.decimal.g10-assembly"
+                },
+                {
+                    "match": "\\b[0-9]+\\.[0-9]+\\b",
+                    "name": "constant.numeric.fixed-point.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b0b[01]+\\b|%[01]+\\b",
+                    "name": "constant.numeric.binary.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b0o[0-7]+\\b|&[0-7]+\\b",
+                    "name": "constant.numeric.octal.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b0x[0-9A-F]+\\b|\\$[0-9A-F]+\\b",
+                    "name": "constant.numeric.hex.g10-assembly"
+                }
+            ]
+        },
+        "characters": {
+            "patterns": [
+                {
+                    "match": "'([^'\\\\]|\\\\([\\\\'\"nrt0]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}))'",
+                    "name": "constant.character.g10-assembly"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "match": "\\\\([\\\\'\"nrt0]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4})",
+                            "name": "constant.character.escape.g10-assembly"
+                        },
+                        {
+                            "begin": "\\{",
+                            "end": "\\}",
+                            "contentName": "source.g10-assembly",
+                            "patterns": [{ "include": "$self" }],
+                            "name": "meta.embedded.g10-assembly"
+                        }
+                    ],
+                    "name": "string.quoted.double.g10-assembly"
+                }
+            ]
+        },
+        "macro_parameters": {
+            "patterns": [
+                {
+                    "match": "@([a-zA-Z_0-9]+|\\?)",
+                    "name": "variable.parameter.macro.g10-assembly"
+                }
+            ]
+        },
+        "labels": {
+            "patterns": [
+                {
+                    "match": "^\\s*[a-zA-Z_\\.{}0-9]+:",
+                    "name": "variable.name.label.g10-assembly"
+                }
+            ]
+        },
+        "registers": {
+            "patterns": [
+                {
+                    "match": "(?i)\\b(D1[0-5]|D[0-9])\\b",
+                    "name": "variable.language.register.dword.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(W1[0-5]|W[0-9])\\b",
+                    "name": "variable.language.register.word.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(H1[0-5]|H[0-9])\\b",
+                    "name": "variable.language.register.high-byte.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(L1[0-5]|L[0-9])\\b",
+                    "name": "variable.language.register.low-byte.g10-assembly"
+                }
+            ]
+        },
+        "conditions": {
+            "patterns": [
+                {
+                    "match": "(?i)\\b(NC|ZS|ZC|CS|CC|VS|VC)\\b",
+                    "name": "constant.language.condition.g10-assembly"
+                }
+            ]
+        },
+        "sections": {
+            "patterns": [
+                {
+                    "match": "(?i)\\b(METADATA|INT[0-9]|INT1[0-9]|INT2[0-9]|INT3[0-1]|CODE|TEXT|DATA|RODATA|BSS|RAM)\\b",
+                    "name": "constant.language.section.g10-assembly"
+                }
+            ]
+        },
+        "instructions": {
+            "patterns": [
+                {
+                    "match": "(?i)\\b(NOP|STOP|HALT|DI|EI|EII|DAA|SCF|CCF|TCF|CLV|SEV|REX|LEC)\\b",
+                    "name": "support.function.instruction.cpu-control.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(LD|LDQ|LDP|ST|STQ|STP|MV|MWH|MWL|MFI|MFO|SWAP|MOV|IN|OUT)\\b",
+                    "name": "support.function.instruction.data-transfer.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(LSP|POP|SSP|PUSH|SPO|SPI)\\b",
+                    "name": "support.function.instruction.stack.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(JMP|JPB|CALL|INT|RET|RETI|JP|JR|RST)\\b",
+                    "name": "support.function.instruction.control-transfer.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(ADD|ADC|SUB|SBC|INC|DEC|CMP)\\b",
+                    "name": "support.function.instruction.arithmetic.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(AND|OR|XOR|NOT|CPL)\\b",
+                    "name": "support.function.instruction.bitwise.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(SLA|SRA|SRL|RLA|RL|RLCA|RLC|RRA|RR|RRCA|RRC|SAL|SAR|SHR|ROL|ROR|RCL|RCR)\\b",
+                    "name": "support.function.instruction.shift-and-rotate.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(BIT|SET|RES|TOG)\\b",
+                    "name": "support.function.instruction.bit-manipulation.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(LDI|LDD|STI|STD|ASP|LASP|ISP|DSP|ASR)\\b",
+                    "name": "support.function.instruction.auxillary.g10-assembly"
+                }
+            ]
+        },
+        "assembler_directives": {
+            "patterns": [
+                {
+                    "match": "(?i)\\.(BYTE|WORD|DWORD|ASCIZ|SPACE|INCBIN|DB|DW|DD|DT|STRING|DS|RESERVE)\\b",
+                    "name": "keyword.control.directive.assembler.data-definition.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\.(EXPORT|IMPORT|GLOBAL|EXTERN)\\b",
+                    "name": "keyword.control.directive.assembler.symbol-definition.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\.(SECTION|ORG|ALIGN)\\b",
+                    "name": "keyword.control.directive.assembler.memory-allocation.g10-assembly"
+                }
+            ]
+        },
+        "preprocessor_directives": {
+            "patterns": [
+                {
+                    "match": "(?i)\\.(CONST|LET|DEF|DEFINE|VAR|SET|MUT)\\b",
+                    "name": "keyword.control.directive.preprocessor.variable-definition.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\.(IF|IFDEF|INFDEF|ELIF|ELSEIF|ELSE|ENDIF|ENDC)\\b",
+                    "name": "keyword.control.directive.preprocessor.conditional.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\.(REPEAT|REPT|TIMES|ENDREPEAT|ENDR|FOR|ENDFOR|ENDF|WHILE|ENDWHILE|ENDW|CONTINUE|BREAK)\\b",
+                    "name": "keyword.control.directive.preprocessor.looping.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\.(INCLUDE|ONCE)\\b",
+                    "name": "keyword.control.directive.preprocessor.include.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\.(MACRO|ENDMACRO|ENDM|SHIFT|RETURN)\\b",
+                    "name": "keyword.control.directive.preprocessor.macros.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\.(PRINT|PRINTLN|INFO|WARNING|ERROR|ASSERT|FAIL)\\b",
+                    "name": "keyword.control.directive.preprocessor.diagnostic.g10-assembly"
+                }
+            ]
+        },
+        "preprocessor_functions": {
+            "patterns": [
+                {
+                    "match": "(?i)\\b(HIGH|LOW|HIDWORD|LODWORD|HIWORD|LOWORD|HIBYTE|LOBYTE|HINIBBLE|LONIBBLE|BITWIDTH|TZCOUNT)\\b",
+                    "name": "support.function.integer.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(FINT|FFRAC|FADD|FSUB|FDIV|FMUL|FMOD|FPOW|FSQRT|FROOT|FLOG|FLN|FROUND|FCEIL|FFLOOR|FRADT|FDEGT|FSIN|FCOS|FTAN|FASIN|FACOS|FATAN|FATAN2)\\b",
+                    "name": "support.function.fixed-point.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(STRCAT|STRNCAT|STRUPR|STRLWR|STRSLICE|STRREPLACE|STRFMT|STRLEN|STRCMP|STRNCMP|STRFIND|STRRFIND|STRNFIND|STRNRFIND|BYTELEN|STRBYTE)\\b",
+                    "name": "support.function.string.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(DEFINED|ISCONST|ISMACRO|ISSYMBOL)\\b",
+                    "name": "support.function.meta.g10-assembly"
+                }
+            ]
+        },
+        "builtins": {
+            "patterns": [
+                {
+                    "match": "(?i)\\b(_NARG|_TARG|_LINE|_FILE|_DATE|_TIME|_VERSION|_UNIQUE|_RANDOM32|_RANDOM64)\\b",
+                    "name": "constant.language.builtin.g10-assembly"
+                }
+            ]
+        }
+    }
+}
