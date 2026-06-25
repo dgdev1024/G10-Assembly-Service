@@ -117,7 +117,7 @@
         "labels": {
             "patterns": [
                 {
-                    "match": "^\\s*[a-zA-Z_\\.{}0-9]+:",
+                    "match": "^\\s*[a-zA-Z_\\.{}0-9]+::?",
                     "name": "variable.name.label.g10-assembly"
                 }
             ]
@@ -201,7 +201,7 @@
         "assembler_directives": {
             "patterns": [
                 {
-                    "match": "(?i)\\.(BYTE|WORD|DWORD|ASCIZ|SPACE|INCBIN|DB|DW|DD|DT|STRING|DS|RESERVE)\\b",
+                    "match": "(?i)\\.(CHARMAP|NEWCHARMAP|SETCHARMAP|PUSHCHARMAP|POPCHARMAP|BYTE|WORD|DWORD|ASCIZ|SPACE|INCBIN|CM|NEWC|SETC|PUSHC|POPC|DB|DW|DD|DT|STRING|DS|RESERVE)\\b",
                     "name": "keyword.control.directive.assembler.data-definition.g10-assembly"
                 },
                 {
@@ -217,7 +217,7 @@
         "preprocessor_directives": {
             "patterns": [
                 {
-                    "match": "(?i)\\.(CONST|LET|DEF|DEFINE|VAR|SET|MUT)\\b",
+                    "match": "(?i)\\.(CONST|LET|DEF|DEFINE|SNIPPET|VAR|SET|MUT|OPERATOR|OPER|OP|SNIP)\\b",
                     "name": "keyword.control.directive.preprocessor.variable-definition.g10-assembly"
                 },
                 {
@@ -257,7 +257,7 @@
                     "name": "support.function.string.g10-assembly"
                 },
                 {
-                    "match": "(?i)\\b(DEFINED|ISCONST|ISMACRO|ISSYMBOL)\\b",
+                    "match": "(?i)\\b(DEFINED|ISCONST|ISMACRO|ISSYMBOL|ISSNIPPET)\\b",
                     "name": "support.function.meta.g10-assembly"
                 }
             ]

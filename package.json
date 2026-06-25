@@ -26,14 +26,14 @@
   "license": "MIT",
   "author": "Dennis W. Griffin",
   "type": "commonjs",
-  "main": "",
+  "main": "./out/extension.js",
   "devDependencies": {
     "@types/node": "^26.0.0",
-    "@types/vscode": "^1.125.0",
+    "@types/vscode": "^1.124.0",
     "typescript": "^6.0.3"
   },
   "engines": {
-    "vscode": "^1.105.0"
+    "vscode": "^1.124.0"
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
