@@ -139,14 +139,50 @@
                 {
                     "match": "(?i)\\b(L1[0-5]|L[0-9])\\b",
                     "name": "variable.language.register.low-byte.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(EAX|EBX|ECX|EDX|R1[0-5]D|R[8-9]D)\\b",
+                    "name": "variable.language.register.dword.style-x86.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(AX|BX|CX|DX|R1[0-5]W|R[8-9]W)\\b",
+                    "name": "variable.language.register.word.style-x86.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(AH|BH|CH|DH)\\b",
+                    "name": "variable.language.register.high-byte.style-x86.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(AL|BL|CL|DL|R1[0-5]B|R[8-9]B)\\b",
+                    "name": "variable.language.register.low-byte.style-x86.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(A|C|E|L)\\b",
+                    "name": "variable.language.register.low-byte.style-gbz80.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(B|D|H)\\b",
+                    "name": "variable.language.register.high-byte.style-gbz80.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(BC|DE|HL)\\b",
+                    "name": "variable.language.register.word.style-gbz80.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(BCP|DEP|HLP)\\b",
+                    "name": "variable.language.register.dword.style-gbz80.g10-assembly"
                 }
             ]
         },
         "conditions": {
             "patterns": [
                 {
-                    "match": "(?i)\\b(NC|ZS|ZC|CS|CC|VS|VC)\\b",
+                    "match": "(?i)\\b(NN|ZS|ZC|CS|CC|VS|VC)\\b",
                     "name": "constant.language.condition.g10-assembly"
+                },
+                {
+                    "match": "(?i)\\b(Z|NZ|C|NC|V|NV)\\b",
+                    "name": "constant.language.condition.style-gbz80.g10-assembly"
                 }
             ]
         },
