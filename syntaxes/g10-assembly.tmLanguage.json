@@ -161,15 +161,15 @@
                     "name": "variable.language.register.low-byte.style-gbz80.g10-assembly"
                 },
                 {
-                    "match": "(?i)\\b(B|D|H)\\b",
+                    "match": "(?i)\\b(F|B|D|H)\\b",
                     "name": "variable.language.register.high-byte.style-gbz80.g10-assembly"
                 },
                 {
-                    "match": "(?i)\\b(BC|DE|HL)\\b",
+                    "match": "(?i)\\b(AF|BC|DE|HL)\\b",
                     "name": "variable.language.register.word.style-gbz80.g10-assembly"
                 },
                 {
-                    "match": "(?i)\\b(BCP|DEP|HLP)\\b",
+                    "match": "(?i)\\b(AFP|BCP|DEP|HLP)\\b",
                     "name": "variable.language.register.dword.style-gbz80.g10-assembly"
                 }
             ]
@@ -213,7 +213,7 @@
                     "name": "support.function.instruction.control-transfer.g10-assembly"
                 },
                 {
-                    "match": "(?i)\\b(ADD|ADC|SUB|SBC|INC|DEC|CMP)\\b",
+                    "match": "(?i)\\b(ADD|ADC|SUB|SBC|INC|DEC|CMP|CP)\\b",
                     "name": "support.function.instruction.arithmetic.g10-assembly"
                 },
                 {
@@ -237,7 +237,7 @@
         "assembler_directives": {
             "patterns": [
                 {
-                    "match": "(?i)\\.(CHARMAP|NEWCHARMAP|SETCHARMAP|PUSHCHARMAP|POPCHARMAP|BYTE|WORD|DWORD|ASCIZ|SPACE|INCBIN|CM|NEWC|SETC|PUSHC|POPC|DB|DW|DD|DT|STRING|DS|RESERVE)\\b",
+                    "match": "(?i)\\.(BYTE|WORD|DWORD|ASCIZ|SPACE|INCBIN|CM|NEWC|SETC|PUSHC|POPC|DB|DW|DD|DT|STRING|DS|RESERVE)\\b",
                     "name": "keyword.control.directive.assembler.data-definition.g10-assembly"
                 },
                 {
@@ -273,6 +273,10 @@
                     "name": "keyword.control.directive.preprocessor.macros.g10-assembly"
                 },
                 {
+                    "match": "(?i)\\.(CHARMAP|NEWCHARMAP|SETCHARMAP|PUSHCHARMAP|POPCHARMAP)\\b",
+                    "name": "keyword.control.directive.preprocessor.charmaps.g10-assembly"
+                },
+                {
                     "match": "(?i)\\.(PRINT|PRINTLN|INFO|WARNING|ERROR|ASSERT|FAIL)\\b",
                     "name": "keyword.control.directive.preprocessor.diagnostic.g10-assembly"
                 }
@@ -281,15 +285,15 @@
         "preprocessor_functions": {
             "patterns": [
                 {
-                    "match": "(?i)\\b(HIGH|LOW|HIDWORD|LODWORD|HIWORD|LOWORD|HIBYTE|LOBYTE|HINIBBLE|LONIBBLE|BITWIDTH|TZCOUNT)\\b",
+                    "match": "(?i)\\b(HIGHDWORD|LOWDWORD|HIGHWORD|LOWWORD|HIGHBYTE|LOWBYTE|HIGHNIBBLE|LOWNIBBLE|HIGH|LOW|BITWIDTH|TZCOUNT)\\b",
                     "name": "support.function.integer.g10-assembly"
                 },
                 {
-                    "match": "(?i)\\b(FINT|FFRAC|FADD|FSUB|FDIV|FMUL|FMOD|FPOW|FSQRT|FROOT|FLOG|FLN|FROUND|FCEIL|FFLOOR|FRADT|FDEGT|FSIN|FCOS|FTAN|FASIN|FACOS|FATAN|FATAN2)\\b",
+                    "match": "(?i)\\bF(INT|FRAC|ADD|SUB|DIV|MUL|MOD|POW|SQRT|ROOT|LOG|LN|CEIL|FLOOR|ROUND|RADT|DEGT|SIN|COS|TAN|ASIN|ACOS|ATAN|ATAN2)\\b",
                     "name": "support.function.fixed-point.g10-assembly"
                 },
                 {
-                    "match": "(?i)\\b(STRCAT|STRNCAT|STRUPR|STRLWR|STRSLICE|STRREPLACE|STRFMT|STRLEN|STRCMP|STRNCMP|STRFIND|STRRFIND|STRNFIND|STRNRFIND|BYTELEN|STRBYTE)\\b",
+                    "match": "(?i)\\b(STRCAT|STRUPR|STRLWR|STRSLICE|STRSLICEC|STRRPL|STRCHAR|REVCHAR|STRLEN|STRCMP|STRNCMP|STRFIND|STRRFIND|BYTELEN|STRBYTE|INCHARMAP|CHARLEN|CHARCMP|CHARSIZE|CHARVAL)\\b",
                     "name": "support.function.string.g10-assembly"
                 },
                 {
