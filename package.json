@@ -2,7 +2,7 @@
   "publisher": "dgdev1024",
   "name": "g10-assembly-service",
   "displayName": "G10 Virtual CPU Assembly Language",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Provides a language service and syntax highlighting for the G10 Virtual CPU Assembly Language.",
   "categories": [
     "Programming Languages"
